@@ -8,7 +8,7 @@ void 0!==c?e&&"set"in e&&void 0!==(d=e.set(a,c,b))?d:a[b]=c:e&&"get"in e&&null!=
 $(document).ready(function(){
     try {
         chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
-            const url = tabs[0].url;
+            const url = encodeURIComponent(tabs[0].url);
             $.get(`http://c.ss/s?s=${url}`, function(data) {
                 var content = $(data).find("input")[0].value
                 $('p').text(`已复制 ${content} 到粘贴板!`);
@@ -21,6 +21,6 @@ $(document).ready(function(){
             });
         });
     }  catch (err) {
-        console.log(error);
+        console.log(err);
     }
 });
